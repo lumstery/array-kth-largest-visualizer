@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kth Largest Element Visualization</title>
+  <style>
+   body {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+#controls {
+  text-align: center;
+  margin: 10px;
+}
+
+#controls label {
+  margin-right: 5px;
+}
+
+#controls input {
+  margin-right: 15px;
+  width: 80px;
+}
+
+#controls button {
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+#info {
+  text-align: center;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+#container {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 200px);
+}
+
+#threejs-container {
+  width: 70%;
+  height: 100%;
+  display: block;
+}
+
+#code-container {
+  width: 30%;
+  height: 100%;
+  overflow: auto;
+  background-color: #f5f5f5;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#code-editor {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.highlight {
+  background-color: #ffff99;
+}
+
+#navigation {
+  text-align: center;
+  margin: 10px;
+}
+
+#navigation button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  font-size: 16px;
+}
+
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <label for="arraySize">Array Size:</label>
+    <input type="number" id="arraySize" value="10" min="1" max="30" />
+    <label for="kValue">K Value:</label>
+    <input type="number" id="kValue" value="3" min="1" />
+    <button id="startBtn">Start Visualization</button>
+  </div>
+  <div id="info"></div>
+  <div id="container">
+    <div id="threejs-container"></div>
+    <div id="code-container">
+      <pre id="code-editor">
+<span id="line1">class Solution {</span>
+<span id="line2">    public int findKthLargest(int[] nums, int k) {</span>
+<span id="line3">        // Create a min heap</span>
+<span id="line4">        PriorityQueue&lt;Integer&gt; minHeap = new PriorityQueue&lt;&gt;();</span>
+
+<span id="line5">        // Iterate through the array</span>
+<span id="line6">        for (int num : nums) {</span>
+<span id="line7">            // Add current element to the heap</span>
+<span id="line8">            minHeap.offer(num);</span>
+
+<span id="line9">            // If the size of the heap exceeds k, remove the smallest element</span>
+<span id="line10">            if (minHeap.size() &gt; k) {</span>
+<span id="line11">                minHeap.poll();</span>
+<span id="line12">            }</span>
+<span id="line13">        }</span>
+
+<span id="line14">        // The root of the heap will be the kth largest element</span>
+<span id="line15">        return minHeap.peek();</span>
+<span id="line16">    }</span>
+<span id="line17">}</span>
+      </pre>
+    </div>
+  </div>
+  <div id="navigation">
+    <button id="prevBtn">Previous</button>
+    <button id="nextBtn">Next</button>
+  </div>
+
+  <!-- Include Three.js library from unpkg.com -->
+  <script src="https://unpkg.com/three@0.124.0/build/three.min.js"></script>
+
+  <!-- Include OrbitControls -->
+  <script src="https://unpkg.com/three@0.124.0/examples/js/controls/OrbitControls.js"></script>
+
+  <!-- Include FontLoader -->
+  <script src="https://unpkg.com/three@0.124.0/examples/js/loaders/FontLoader.js"></script>
+
+  <!-- Include TextGeometry -->
+  <script src="https://unpkg.com/three@0.124.0/examples/js/geometries/TextGeometry.js"></script>
+
+  <!-- Main JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
